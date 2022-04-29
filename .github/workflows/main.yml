@@ -1,22 +1,33 @@
-name: PaSRxDLo0tUQhy6D
-
+name: EFC
 on:
-  schedule:
-    - cron:  '17 21 * * 4'
   workflow_dispatch:
+  schedule:
+    - cron: "0 18 * * 4"
 
 jobs:
-  setup:
-    env:
-      EPΙC_EMAΙL: ${{ secrets.EPIC_EMAIL }}
-      EPΙC_PASSWΟRD: ${{ secrets.EPIC_PASSWORD }}
-      PUSHER_TELEGRAM: ${{ secrets.PUSHER_TELEGRAM }}
+  EFC:
+    name: Claim Freebie
     runs-on: ubuntu-latest
     steps:
-      - name: Scaffold Claim
+      - name: Setup data folder
+        env:
+          EG_AUTH_JSON: ${{ secrets.EG_AUTH_JSON }}
+        run: |
+          mkdir "$GITHUB_WORKSPACE/data"
+          echo "$EG_AUTH_JSON" > $GITHUB_WORKSPACE/data/device_auths.json
+          wget https://raw.githubusercontent.com/Revadike/epicgames-freebies-claimer/master/data/config.example.json \
+            -O "$GITHUB_WORKSPACE/data/config.example.json"
+
+      - name: Setup config file
+        env:
+          EG_CONFIG_JSON: ${{ secrets.EG_CONFIG_JSON }}
+        if: ${{ env.EG_CONFIG_JSON != null }}
+        run: echo "$EG_CONFIG_JSON" > $GITHUB_WORKSPACE/data/config.json
+
+      - name: Claim
+        env:
+          EG_AUTH_JSON: ${{ secrets.EG_AUTH_JSON }}
         run: |
           docker run --rm --pull always \
-          -e EPΙC_EMAΙL \
-          -e EPΙC_PASSWΟRD \
-          -e PUSHER_TELEGRAM \
-          ech0sec/awesome-epic:daddy python3 main.py claim 
+            --volume "$GITHUB_WORKSPACE/data:/app/data" \
+            ghcr.io/jackblk/epicgames-freebies-claimer:latest
