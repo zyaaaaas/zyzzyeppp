@@ -1,11 +1,12 @@
 name: Fingers Of The Golden Order
 
 on:
-  workflow_dispatch:    
   schedule:
     - cron: 
       # 北京时间 周五 05:17
       - "17 21 * * 4"
+  workflow_dispatch:    
+  
 
 jobs:
   setup:
