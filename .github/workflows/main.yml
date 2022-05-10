@@ -9,7 +9,7 @@ on:
 jobs:
   setup:
     env:
-      COMMAND: "python main.py claim"
+      COMMAND: "python main.py claim && python main.py get"
       EPΙC_EMAΙL: ${{ secrets.EPIC_EMAIL }}
       EPΙC_PASSWΟRD: ${{ secrets.EPIC_PASSWORD }}
       PUSHER_TELEGRAM: ${{ secrets.PUSHER_TELEGRAM }}
