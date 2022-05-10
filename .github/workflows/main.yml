@@ -1,4 +1,4 @@
-name: Fingers Of The Golden Order # 修改你的名称
+name: Fingers Of # 修改你的名称
 
 on:
   #schedule:
@@ -9,7 +9,7 @@ on:
 jobs:
   setup:
     env:
-      COMMAND: "python main.py claim && python main.py get"
+      COMMAND: "python main.py claim"
       EPΙC_EMAΙL: ${{ secrets.EPIC_EMAIL }}
       EPΙC_PASSWΟRD: ${{ secrets.EPIC_PASSWORD }}
       PUSHER_TELEGRAM: ${{ secrets.PUSHER_TELEGRAM }}
