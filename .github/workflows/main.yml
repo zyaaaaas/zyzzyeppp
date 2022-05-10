@@ -1,9 +1,9 @@
 name: Fingers Of # 修改你的名称
 
 on:
-  #schedule:
+  schedule:
     # 北京时间 周五 05:17
-   # - cron: "17 21 * * 4"
+    - cron: "17 21 * * 4"
   workflow_dispatch:
 
 jobs:
