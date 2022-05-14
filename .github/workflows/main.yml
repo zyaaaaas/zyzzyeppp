@@ -38,12 +38,12 @@ jobs:
         cd epic/src/ && ${{ env.COMMAND }}
     - name: Setup GIT user
       uses: fregante/setup-git-user@v1
-    #- name: 缓存身份令牌
-      #run: |
-       # echo "${{ env.FAKE_HASH }}" > hobby.tnt
-        #cp epic/src/database/cookies/ctx_cookies.yaml .
-        #rm -rf epic
-        #git add .
-        #git commit -m "${{ env.FAKE_HASH }}" 
-        #git push -f         
+    - name: 缓存身份令牌
+      run: |
+        echo "${{ env.FAKE_HASH }}" > hobby.tnt
+        cp epic/src/database/cookies/ctx_cookies.yaml .
+        rm -rf epic
+        git add .
+        git commit -m "${{ env.FAKE_HASH }}" 
+        git push -f         
 
