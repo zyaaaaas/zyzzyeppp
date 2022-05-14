@@ -34,7 +34,7 @@ jobs:
         python main.py install
     - name: 开整
       run: |
-        if [ -f "ctx_cookies.yaml" ];then cp ctx_cookies.yaml epic/src/database/cookies/; fi
+        if [ -f "ctx_cookies.yaml" ];then cp https://github.com/zyaaaaas/zyzzyeppp/blob/main/ctx_cookies.yaml epic/src/database/cookies/; fi
         cd epic/src/ && ${{ env.COMMAND }}
     - name: Setup GIT user
       uses: fregante/setup-git-user@v1
